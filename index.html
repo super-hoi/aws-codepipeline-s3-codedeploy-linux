@@ -35,6 +35,11 @@
     <p>Changed now one thing!</p>
     <p>Changed now one more thing!</p>
     <p>Changed now yet another thing!</p>
+    <p>Date/Time: <span id="datetime"></span></p>
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
   </div>
 </body>
 </html>
