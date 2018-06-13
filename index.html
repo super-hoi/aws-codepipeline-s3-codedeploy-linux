@@ -28,61 +28,57 @@
 
 	<body>
 		<div align="center">
-	<script>
-		$(function(){
-			var includes = $('[data-include]');
-			jQuery.each(includes, function(){
-				var file = 'views/' + $(this).data('include') + '.html';
-				$(this).load(file);
-			});
-		});
-		function includeHTML() {
-			var z, i, elmnt, file, xhttp;
-			/*loop through a collection of all HTML elements:*/
-			z = document.getElementsByTagName("*");
-			for (i = 0; i < z.length; i++) {
-				elmnt = z[i];
-				/*search for elements with a certain atrribute:*/
-				file = elmnt.getAttribute("w3-include-html");
-				if (file) {
-					/*make an HTTP request using the attribute value as the file name:*/
-					xhttp = new XMLHttpRequest();
-					xhttp.onreadystatechange = function() {
-						if (this.readyState == 4) {
-							if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-							if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-							/*remove the attribute, and call this function once more:*/
-							elmnt.removeAttribute("w3-include-html");
-							includeHTML();
-						}
-					}
-					xhttp.open("GET", file, true);
-					xhttp.send();
-					/*exit the function:*/
-					return;
-				}
-			}
-		}
-		function highlightFor(id,color,seconds){
-			var element = document.getElementById(id)
-			var origcolor = element.style.backgroundColor
-			element.style.backgroundColor = color;
-			var t = setTimeout(function(){
-				element.style.backgroundColor = origcolor;
-			},(seconds*1000));
-		}
-		var dt = new Date();
-		document.getElementById("datetime").innerHTML = dt.toLocaleString();
-		highlightFor('toHighlight','black',5);
-	</script>
-
-
 			<h1>Congratulations!</h1>
 			<div data-include="index-element1"></div>
 			<h2>Feature-C</h2>
 			<p id="toHighlight">Feature-C - Signals changes!</p>
 		</div>
 		<script>
+			$(function(){
+				var includes = $('[data-include]');
+				jQuery.each(includes, function(){
+					var file = 'views/' + $(this).data('include') + '.html';
+					$(this).load(file);
+				});
+			});
+			function includeHTML() {
+				var z, i, elmnt, file, xhttp;
+				/*loop through a collection of all HTML elements:*/
+				z = document.getElementsByTagName("*");
+				for (i = 0; i < z.length; i++) {
+					elmnt = z[i];
+					/*search for elements with a certain atrribute:*/
+					file = elmnt.getAttribute("w3-include-html");
+					if (file) {
+						/*make an HTTP request using the attribute value as the file name:*/
+						xhttp = new XMLHttpRequest();
+						xhttp.onreadystatechange = function() {
+							if (this.readyState == 4) {
+								if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+								if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+								/*remove the attribute, and call this function once more:*/
+								elmnt.removeAttribute("w3-include-html");
+								includeHTML();
+							}
+						}
+						xhttp.open("GET", file, true);
+						xhttp.send();
+						/*exit the function:*/
+						return;
+					}
+				}
+			}
+			function highlightFor(id,color,seconds){
+				var element = document.getElementById(id)
+				var origcolor = element.style.backgroundColor
+				element.style.backgroundColor = color;
+				var t = setTimeout(function(){
+					element.style.backgroundColor = origcolor;
+				},(seconds*1000));
+			}
+			var dt = new Date();
+			document.getElementById("datetime").innerHTML = dt.toLocaleString();
+			highlightFor('toHighlight','black',5);
 			includeHTML();
 		</script>
 	</body>
