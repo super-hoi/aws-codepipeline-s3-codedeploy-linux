@@ -31,20 +31,19 @@
 			<h1>Congratulations!</h1>
 			<h2>Feature-C</h2>
 			<p id="toHighlight">Feature-C - Signals changes!</p>
-		<script>
-			function highlightFor(id,color,seconds){
-				var element = document.getElementById(id)
-				var origcolor = element.style.backgroundColor
-				element.style.backgroundColor = color;
-				var t = setTimeout(function(){
-					element.style.backgroundColor = origcolor;
-				},(seconds*1000));
-			}
-			var dt = new Date();
-			document.getElementById("datetime").innerHTML = dt.toLocaleString();
-			highlightFor('toHighlight','black',5);
-		</script>
+			<script>
+				function highlightFor(id,color,seconds){
+					var element = document.getElementById(id)
+					var origcolor = element.style.backgroundColor
+					element.style.backgroundColor = color;
+					var t = setTimeout(function(){
+						element.style.backgroundColor = origcolor;
+					},(seconds*1000));
+				}
+				var dt = new Date();
+				document.getElementById("datetime").innerHTML = dt.toLocaleString();
+				highlightFor('toHighlight','black',5);
+			</script>
 		</div>
 	</body>
 </html>
-
